@@ -6,8 +6,8 @@ let deck = [
     'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond',
     'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle',
     'fa fa-paper-plane-o', 'fa fa-cube'
-  ];
-
+];
+let openCards = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -16,7 +16,7 @@ let deck = [
  */
  function refreshDeck(array) {
     shuffle(array);
-    const cards = $('.deck')
+    const cards = $('.deck');
     cards.children().each(function(index) {
         $(this).children().attr('class',array[index]);
     });
@@ -50,3 +50,51 @@ $('.restart').click(function() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+$('.card').click(function() {
+    showCard(this);
+    if (openCards.length > 0) {
+        addCard(this);
+        console.log(openCards);
+        if (checkMatch(openCards)) {
+            createMatch();
+            console.log(this);
+            openCards = [];
+
+        } else {
+            openCards = [];
+            hideCards();
+        };
+    } else {
+      addCard(this);
+    };
+});
+
+function showCard(card) {
+    $(card).addClass('open show');
+};
+
+function hideCards() {
+    $('.deck').children().removeClass('open show');
+};
+
+function addCard(card) {
+    openCards.push($(card).children().attr('class'));
+};
+
+function createMatch() {
+    $('.deck').children().each(function() {
+      console.log($(this));
+        if ($(this).children().attr('class') === openCards[0]) {
+            $(this).removeClass('open show').addClass('match');
+        };
+    });
+};
+
+function checkMatch(array) {
+    if (array[0] === array[1]) {
+        return true;
+    } else {
+        return false;
+    }
+};

@@ -52,22 +52,24 @@ $('.restart').click(function() {
  */
 
 $('.card').click(function() {
-    showCard(this);
-    if (openCards.length > 0) {
-        addCard(this);
-        console.log(openCards);
-        if (checkMatch(openCards)) {
-            createMatch();
-            console.log(this);
-            openCards = [];
-            increaseCount();
+    if ($(this).attr('class')!='card open show' && $(this).attr('class')!='card match'){
+        showCard(this);
+        if (openCards.length > 0) {
+            addCard(this);
+            console.log(openCards);
+            if (checkMatch(openCards)) {
+                createMatch();
+                console.log(this);
+                openCards = [];
+                increaseCount();
+            } else {
+                openCards = [];
+                increaseCount();
+                hideCards();
+            };
         } else {
-            openCards = [];
-            increaseCount();
-            hideCards();
+          addCard(this);
         };
-    } else {
-      addCard(this);
     };
 });
 

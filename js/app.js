@@ -60,9 +60,10 @@ $('.card').click(function() {
             createMatch();
             console.log(this);
             openCards = [];
-
+            increaseCount();
         } else {
             openCards = [];
+            increaseCount();
             hideCards();
         };
     } else {
@@ -98,3 +99,10 @@ function checkMatch(array) {
         return false;
     }
 };
+
+function increaseCount() {
+    count = parseInt($('.moves').text());
+    count += 1;
+    count = count.toString();
+    $('.moves').text(count);
+}

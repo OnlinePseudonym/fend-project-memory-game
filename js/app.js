@@ -56,10 +56,8 @@ $('.card').click(function() {
         showCard(this);
         if (openCards.length > 0) {
             addCard(this);
-            console.log(openCards);
             if (checkMatch(openCards)) {
                 createMatch();
-                console.log(this);
                 openCards = [];
                 increaseCount();
             } else {
@@ -87,7 +85,6 @@ function addCard(card) {
 
 function createMatch() {
     $('.deck').children().each(function() {
-      console.log($(this));
         if ($(this).children().attr('class') === openCards[0]) {
             $(this).removeClass('open show').addClass('match');
         };

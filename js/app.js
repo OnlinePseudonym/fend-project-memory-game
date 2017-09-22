@@ -61,9 +61,10 @@ $('.card').click(function() {
                 openCards = [];
                 increaseCount();
             } else {
+                noMatch();
                 openCards = [];
                 increaseCount();
-                hideCards();
+                setTimeout(hideCards,1000);
             };
         } else {
           addCard(this);
@@ -75,8 +76,9 @@ function showCard(card) {
     $(card).addClass('open show');
 };
 
+
 function hideCards() {
-    $('.deck').children().removeClass('open show');
+    $('.deck').children().removeClass('open show').removeClass('noMatch');
 };
 
 function addCard(card) {
@@ -89,6 +91,15 @@ function createMatch() {
             $(this).removeClass('open show').addClass('match');
         };
     });
+};
+
+function noMatch() {
+    $('.deck').find('.open').each(function() {
+      console.log($(this).attr('class'));
+      if ($(this).attr('class') === 'card open show') {
+          $(this).removeClass('open show').addClass('noMatch');
+      };
+  });
 };
 
 function checkMatch(array) {

@@ -20,6 +20,8 @@ let openCards = [];
     cards.children().each(function(index) {
         $(this).children().attr('class',array[index]);
     });
+    hideCards();
+    $('.deck').children().removeClass('match');
  };
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -39,8 +41,10 @@ function shuffle(array) {
 
 $('.restart').click(function() {
     refreshDeck(deck);
+    resetCount();
+    openCards = [];
 });
-/*
+/*c
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
@@ -116,4 +120,8 @@ function increaseCount() {
     count += 1;
     count = count.toString();
     $('.moves').text(count);
+};
+
+function resetCount() {
+    $('.moves').text('0');
 }

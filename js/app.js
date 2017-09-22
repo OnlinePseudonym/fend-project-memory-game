@@ -79,6 +79,7 @@ function showCard(card) {
 
 function hideCards() {
     $('.deck').children().removeClass('open show').removeClass('noMatch');
+    $('.deck').css("pointer-events","auto");
 };
 
 function addCard(card) {
@@ -95,9 +96,9 @@ function createMatch() {
 
 function noMatch() {
     $('.deck').find('.open').each(function() {
-      console.log($(this).attr('class'));
       if ($(this).attr('class') === 'card open show') {
           $(this).removeClass('open show').addClass('noMatch');
+          $('.deck').css("pointer-events","none");
       };
   });
 };

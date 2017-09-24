@@ -1,3 +1,4 @@
+$('.deck').css("pointer-events","none");
 /*
  * Create a list that holds all of your cards
  */
@@ -8,6 +9,10 @@ let deck = [
     'fa fa-paper-plane-o', 'fa fa-cube'
 ];
 let openCards = [];
+
+let c = 0;
+
+let myTimer;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -39,11 +44,17 @@ function shuffle(array) {
     return array;
 }
 
+$('.start').click(function() {
+    myTimer = setInterval(function() { timer() }, 1000);
+    $('.deck').css("pointer-events","auto");
+})
+
 $('.restart').click(function() {
     refreshDeck(deck);
     resetCount();
     openCards = [];
-});
+    c = 0;
+})
 /*c
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -74,21 +85,21 @@ $('.card').click(function() {
           addCard(this);
         };
     };
-});
+})
 
 function showCard(card) {
     $(card).addClass('open show');
-};
+}
 
 
 function hideCards() {
     $('.deck').children().removeClass('open show').removeClass('noMatch');
     $('.deck').css("pointer-events","auto");
-};
+}
 
 function addCard(card) {
     openCards.push($(card).children().attr('class'));
-};
+}
 
 function createMatch() {
     $('.deck').children().each(function() {
@@ -96,7 +107,7 @@ function createMatch() {
             $(this).removeClass('open show').addClass('match');
         };
     });
-};
+}
 
 function noMatch() {
     $('.deck').find('.open').each(function() {
@@ -105,7 +116,7 @@ function noMatch() {
           $('.deck').css("pointer-events","none");
       };
   });
-};
+}
 
 function checkMatch(array) {
     if (array[0] === array[1]) {
@@ -113,15 +124,40 @@ function checkMatch(array) {
     } else {
         return false;
     }
-};
+}
 
 function increaseCount() {
     count = parseInt($('.moves').text());
     count += 1;
     count = count.toString();
     $('.moves').text(count);
-};
+}
 
 function resetCount() {
     $('.moves').text('0');
+}
+
+function timer() {
+    let m, s;
+    ++c;
+    if (c > 3600){
+      $('.timer').text('TIMEOUT');
+      clearInterval(myTimer)
+    } else {
+      m = Math.floor(c/60);
+      s = c%60;
+    };
+    if (m/10 >= 1){
+      if (s/10 >= 1){
+        $('.timer').text(m.toString()+':'+s.toString());
+      } else{
+        $('.timer').text(m.toString()+':0'+s.toString());
+      }
+    } else{
+      if (s/10 >= 1){
+        $('.timer').text('0'+m.toString()+':'+s.toString());
+      } else {
+        $('.timer').text('0'+m.toString()+':0'+s.toString());
+      }
+    }
 }

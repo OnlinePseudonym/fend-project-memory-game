@@ -113,3 +113,15 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.score-panel .start {
+    float: right;
+    cursor: pointer;
+    margin: 0 5px 0 5px;
+}
+
+.score-panel .timer {
+    float: right;
+    cursor: pointer;
+    margin: 0 5px 0 5px;
+}

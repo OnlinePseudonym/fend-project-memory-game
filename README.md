@@ -2,19 +2,21 @@
 
 ## Table of Contents
 
+* [Description](#description)
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+* [License](#license)
+
+## Description
+
+This is a simple matching game with 8 pairs of matching cards face down on the
+game board
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Open the index.html in your browser and click the play button to begin game, click
+cards to flip them over.
 
-To get started, open `js/app.js` and start building out the app's functionality
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## License
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Matching Game is under the MIT License.

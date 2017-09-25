@@ -99,7 +99,7 @@ function increaseCount() {
 
 //remove stars at given checkpoints according to the move counter
 function removeStar() {
-    if ($('.moves').text() === '14' || $('.moves').text() === '18' || $('.moves').text() === '22') {
+    if ($('.moves').text() === '14' || $('.moves').text() === '18') {
         $('.stars').children().first().remove();
     }
 }

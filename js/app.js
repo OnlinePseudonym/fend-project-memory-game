@@ -65,6 +65,10 @@ $('.yesBtn').click(function() {
 
 $('.noBtn').click(function() {
     $('.modal').css("display","none");
+});
+
+$('.close').click(function() {
+    $('.modal').css("display","none");
 })
 /*c
  * set up the event listener for a card. If a card is clicked:
@@ -187,7 +191,7 @@ function timer() {
 };
 
 function win() {
-    $('.congratulations').html('Congratulations! <br/>You won in '+ timeString
+    $('.congratulations').html('<h2>Congratulations!</h2> <br/>You won in '+ timeString
         +'!<br/>Would you like to play again?')
     $('.modal').css("display","block");
 

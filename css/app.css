@@ -142,10 +142,12 @@ h1 {
 
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
-    margin: auto;
+    max-width: 400px;
+    background-color: #fff;
+    margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
+    border-radius: 10px;
     width: 80%;
 }
 
@@ -162,4 +164,20 @@ h1 {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.yesBtn {
+    width: 20%;
+    border-radius: 5px;
+    border: 1px solid #888;
+    cursor: pointer;
+    margin-left: 100px;
+}
+
+.noBtn {
+    width: 20%;
+    border-radius: 5px;
+    border: 1px solid #888;
+    cursor: pointer;
+    margin-right: 100px;
 }

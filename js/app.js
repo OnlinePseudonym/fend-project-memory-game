@@ -91,6 +91,7 @@ $('.card').click(function() {
                 openCards = [];
                 matches++;
                 increaseCount();
+                removeStar();
                 if (matches === 8){
                     clearInterval(myTimer);
                     win();
@@ -99,6 +100,7 @@ $('.card').click(function() {
                 noMatch();
                 openCards = [];
                 increaseCount();
+                removeStar();
                 setTimeout(hideCards,1000);
             };
         } else {
@@ -152,6 +154,12 @@ function increaseCount() {
     $('.moves').text(count);
 };
 
+function removeStar() {
+  if ($('.moves').text() === '13' || $('.moves').text() === '17' || $('.moves').text() === '21') {
+    $('.stars').children().first().remove();
+  };
+};
+
 function resetCount() {
     $('.moves').text('0');
 };
@@ -162,6 +170,7 @@ function restart() {
     openCards = [];
     c = 0;
     matches = 0;
+    $('.stars').html('<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>');
 };
 
 function timer() {
@@ -191,8 +200,14 @@ function timer() {
 };
 
 function win() {
-    $('.congratulations').html('<h2>Congratulations!</h2> <br/>You won in '+ timeString
-        +'!<br/>Would you like to play again?')
+    let stars = $('.stars').children().length;
+    if (stars === 1) {
+      $('.congratulations').html('<h2>Congratulations!</h2> <br/>You won in '
+          +timeString+' with '+stars+' star!<br/>Would you like to play again?')
+    } else {
+      $('.congratulations').html('<h2>Congratulations!</h2> <br/>You won in '
+          +timeString+' with '+stars+' stars!<br/>Would you like to play again?')
+    };
     $('.modal').css("display","block");
 
 };

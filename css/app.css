@@ -144,11 +144,12 @@ h1 {
 .modal-content {
     max-width: 400px;
     background-color: #fff;
-    margin: 20% auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
     width: 80%;
+    text-align: center;
 }
 
 /* The Close Button */
@@ -166,18 +167,19 @@ h1 {
     cursor: pointer;
 }
 
-.yesBtn {
-    width: 20%;
-    border-radius: 5px;
-    border: 1px solid #888;
-    cursor: pointer;
-    margin-left: 100px;
-}
-
+.yesBtn,
 .noBtn {
     width: 20%;
     border-radius: 5px;
     border: 1px solid #888;
     cursor: pointer;
+    margin-top: 20px;
+}
+
+.yesBtn{
+    margin-left: 100px;
+}
+
+.noBtn {
     margin-right: 100px;
 }

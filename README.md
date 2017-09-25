@@ -19,4 +19,4 @@ cards to flip them over.
 
 ## License
 
-Matching Game is under the MIT License.
+'Matching Game' is under the MIT License.

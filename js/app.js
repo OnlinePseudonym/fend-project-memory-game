@@ -11,8 +11,9 @@ let deck = [
 let openCards = [];
 
 let c = 0;
-
+let matches = 0;
 let myTimer;
+let timeString = "";
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -39,21 +40,31 @@ function shuffle(array) {
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
-    }
+    };
 
     return array;
-}
+};
 
 $('.start').click(function() {
+    clearInterval(myTimer);
     myTimer = setInterval(function() { timer() }, 1000);
     $('.deck').css("pointer-events","auto");
-})
+});
 
 $('.restart').click(function() {
-    refreshDeck(deck);
-    resetCount();
-    openCards = [];
-    c = 0;
+    restart();
+});
+
+$('.yesBtn').click(function() {
+    $('.modal').css("display","none");
+    $('.timer').text("00:00");
+    restart();
+    $('.deck').css("pointer-events","none");
+
+});
+
+$('.noBtn').click(function() {
+    $('.modal').css("display","none");
 })
 /*c
  * set up the event listener for a card. If a card is clicked:
@@ -74,7 +85,12 @@ $('.card').click(function() {
             if (checkMatch(openCards)) {
                 createMatch();
                 openCards = [];
+                matches++;
                 increaseCount();
+                if (matches === 8){
+                    clearInterval(myTimer);
+                    win();
+                };
             } else {
                 noMatch();
                 openCards = [];
@@ -85,21 +101,20 @@ $('.card').click(function() {
           addCard(this);
         };
     };
-})
+});
 
 function showCard(card) {
     $(card).addClass('open show');
-}
-
+};;
 
 function hideCards() {
     $('.deck').children().removeClass('open show').removeClass('noMatch');
     $('.deck').css("pointer-events","auto");
-}
+};
 
 function addCard(card) {
     openCards.push($(card).children().attr('class'));
-}
+};
 
 function createMatch() {
     $('.deck').children().each(function() {
@@ -107,7 +122,7 @@ function createMatch() {
             $(this).removeClass('open show').addClass('match');
         };
     });
-}
+};
 
 function noMatch() {
     $('.deck').find('.open').each(function() {
@@ -116,48 +131,64 @@ function noMatch() {
           $('.deck').css("pointer-events","none");
       };
   });
-}
+};
 
 function checkMatch(array) {
     if (array[0] === array[1]) {
         return true;
     } else {
         return false;
-    }
-}
+    };
+};
 
 function increaseCount() {
     count = parseInt($('.moves').text());
     count += 1;
     count = count.toString();
     $('.moves').text(count);
-}
+};
 
 function resetCount() {
     $('.moves').text('0');
-}
+};
+
+function restart() {
+    refreshDeck(deck);
+    resetCount();
+    openCards = [];
+    c = 0;
+    matches = 0;
+};
 
 function timer() {
     let m, s;
-    ++c;
+    c++;
     if (c > 3600){
       $('.timer').text('TIMEOUT');
-      clearInterval(myTimer)
+      clearInterval(myTimer);
     } else {
       m = Math.floor(c/60);
       s = c%60;
     };
     if (m/10 >= 1){
       if (s/10 >= 1){
-        $('.timer').text(m.toString()+':'+s.toString());
+        timeString = m.toString()+':'+s.toString();
       } else{
-        $('.timer').text(m.toString()+':0'+s.toString());
-      }
+        timeString = m.toString()+':0'+s.toString();
+      };
     } else{
       if (s/10 >= 1){
-        $('.timer').text('0'+m.toString()+':'+s.toString());
+        timeString = '0'+m.toString()+':'+s.toString();
       } else {
-        $('.timer').text('0'+m.toString()+':0'+s.toString());
-      }
-    }
-}
+        timeString = '0'+m.toString()+':0'+s.toString();
+      };
+    };
+    $('.timer').text(timeString);
+};
+
+function win() {
+    $('.congratulations').html('Congratulations! <br/>You won in '+ timeString
+        +'!<br/>Would you like to play again?')
+    $('.modal').css("display","block");
+
+};

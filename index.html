@@ -10,7 +10,14 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
-
+    <div id="myModal" class="modal" title="You Won!">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p class="congratulations"></p>
+          <button class="yesBtn">Yes</button>
+          <button class="noBtn">No</button>
+        </div>
+    </div>
     <div class="container">
         <header>
             <h1>Matching Game</h1>
@@ -24,13 +31,13 @@
         	</ul>
 
         	<span class="moves">0</span> Moves
+          <div class="restart">
+            <i class="fa fa-repeat"></i>
+          </div>
+          <div class="timer"></div>
             <div class="start">
               <i class="fa fa-play"></i>
             </div>
-            <div class="restart">
-          		<i class="fa fa-repeat"></i>
-          	</div>
-            <div class="timer"></div>
         </section>
 
         <ul class="deck">
